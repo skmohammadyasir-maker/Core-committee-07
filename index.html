@@ -3,202 +3,869 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Black Force 007 Club</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+  <title>Black Force 007 Club - সত্য ও ন্যায়ের পথে</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ---------------- General ---------------- */
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Noto Sans Bengali', sans-serif;}
-    html { scroll-behavior: smooth;}
-    body { background: #0a0a0a; color:#f5f5f5; line-height:1.6;}
-    a { color: #ffd700; text-decoration:none; transition:0.3s;}
-    a:hover { color:#fff; text-decoration:underline;}
+    /* ---------------- CSS Variables ---------------- */
+    :root {
+      --primary: #ffcc00;
+      --primary-dark: #e6b800;
+      --secondary: #0d0d0d;
+      --accent: #ff3333;
+      --text-light: #f1f1f1;
+      --text-dark: #333;
+      --bg-light: #f9f9f9;
+      --card-light: #ffffff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
 
-    /* ---------------- Header ---------------- */
+    .light-mode {
+      --secondary: #f9f9f9;
+      --text-light: #333;
+      --text-dark: #111;
+      --bg-light: #ffffff;
+      --card-light: #f0f0f0;
+    }
+
+    /* ---------------- General Styles ---------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--secondary);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: var(--transition);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    h1, h2, h3, h4 {
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    hr {
+      border: 0.5px solid #555;
+      margin: 20px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 25px;
+      background: var(--primary);
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+    }
+
+    /* ---------------- Header & Hero ---------------- */
     header {
-      background: linear-gradient(135deg, #0d0d0d, #111111);
-      text-align:center;
-      padding:40px 20px;
-      border-bottom:3px solid #ffcc00;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1550684376-efcbd6e3f031?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
     }
-    header h1 { font-size:3rem; color:#ffcc00; margin-bottom:10px; text-shadow: 2px 2px 4px #000;}
-    header p { font-size:1.2rem; color:#ccc; max-width:800px; margin:auto;}
 
-    /* ---------------- Navbar ---------------- */
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      animation: fadeInDown 1s ease;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: #ddd;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      animation: fadeIn 1.5s ease;
+    }
+
+    /* ---------------- Navigation ---------------- */
     nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(17, 17, 17, 0.95);
+      padding: 15px 5%;
       position: sticky;
-      top:0;
-      background:#111;
-      display:flex;
-      justify-content:center;
-      gap:15px;
-      padding:12px 0;
-      z-index:100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
-    nav a {
-      padding:8px 16px;
-      background:#222;
-      border-radius:6px;
-      font-weight:bold;
-      transition:0.3s;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    nav a:hover { background:#ffcc00; color:#000; }
 
-    /* ---------------- Container ---------------- */
-    .container { width:90%; max-width:1200px; margin:auto; padding:30px 0; }
-
-    /* ---------------- Sections ---------------- */
-    section { padding:40px 0; border-bottom:1px solid #333; }
-    section h2, section h3 { color:#ffd700; margin-bottom:20px; text-align:center; text-shadow:1px 1px 3px #000; }
-    section p { margin-bottom:10px; }
-
-    /* ---------------- Cards ---------------- */
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:20px; }
-    .card {
-      background: linear-gradient(135deg, #1a1a1a, #222);
-      padding:20px;
-      border-radius:12px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow:0 4px 12px rgba(0,0,0,0.5);
+    .logo img {
+      height: 40px;
     }
-    .card:hover { transform: translateY(-8px); box-shadow:0 8px 20px rgba(0,0,0,0.7);}
-    .card strong { color:#ffcc00; }
 
-    /* ---------------- Contact ---------------- */
-    .contact a { color:#ffcc00; }
-    .contact a:hover { color:#fff; text-decoration:underline; }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(30deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ---------------- Section ---------------- */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-dark {
+      background: #111;
+    }
+
+    .section-light {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .committee, .area-committee, .contact {
+      background: var(--card-light);
+      color: var(--text-dark);
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .committee:hover, .area-committee:hover, .contact:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .committee h2, .area-committee h3 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+      padding-left: 15px;
+    }
+
+    /* ---------------- Committee Grid ---------------- */
+    .committee-grid, .area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .committee-card, .area-card {
+      background: var(--secondary);
+      color: var(--text-light);
+      padding: 20px;
+      border-radius: 10px;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .committee-card:before, .area-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .committee-card:hover, .area-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .committee-card p, .area-card p {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .committee-card i, .area-card i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    /* ---------------- Contact Section ---------------- */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: var(--secondary);
+      color: var(--text-light);
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
 
     /* ---------------- Footer ---------------- */
     footer {
-      background:#111;
-      text-align:center;
-      padding:25px 20px;
-      border-top:3px solid #ffcc00;
+      background: #111;
+      text-align: center;
+      padding: 50px 0 20px;
+      border-top: 2px solid var(--primary);
     }
-    footer p { color:#ccc; margin-bottom:10px; }
-    .socials a { margin:0 10px; color:#ffd700; font-weight:bold; transition:0.3s;}
-    .socials a:hover { color:#fff; }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .footer-links h4, .footer-social h4 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .footer-links h4:after, .footer-social h4:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #333;
+      border-radius: 50%;
+      color: #fff;
+      transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+      background: var(--primary);
+      color: #000;
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      font-size: 0.9rem;
+      color: #999;
+    }
 
     /* ---------------- Animations ---------------- */
-    .fade-in { opacity:0; animation:fadeIn 1.5s forwards; }
-    @keyframes fadeIn { 100% {opacity:1;} }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------------- Scroll to Top ---------------- */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+    }
+
+    .scroll-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ---------------- Media Queries ---------------- */
+    @media (max-width: 992px) {
+      header h1 {
+        font-size: 2.8rem;
+      }
+      
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(17, 17, 17, 0.98);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 80px 0;
+      }
+      
+      header h1 {
+        font-size: 2.2rem;
+      }
+      
+      header p {
+        font-size: 1.1rem;
+      }
+      
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .container {
+        width: 95%;
+      }
+      
+      .committee-card, .area-card {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
-  <header class="fade-in">
-    <h1>Black Force 007</h1>
-    <p>স্বাগতম Black Force 007' Club ⚖️! আমরা সত্য ও ন্যায়ের পথে সমাজের উন্নতি ও অপরাধের বিরুদ্ধে লড়াই করি। আমাদের সঙ্গে যোগ দিয়ে একটি সুন্দর ও নিরাপদ ভবিষ্যৎ গড়ুন।</p>
+  <!-- Header & Hero -->
+  <header id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Black Force 007</h1>
+        <p>স্বাগতম Black Force 007' Club ⚖️! আমরা সত্য ও ন্যায়ের পথে সমাজের উন্নতি ও অপরাধের বিরুদ্ধে লড়াই করি।</p>
+        <div class="hero-btns">
+          <a href="#committee" class="btn">কমিটি দেখুন</a>
+          <a href="#contact" class="btn">যোগাযোগ করুন</a>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Navbar -->
+  <!-- Navigation -->
   <nav>
-    <a href="#home">Home</a>
-    <a href="#committee">Committee</a>
-    <a href="#area">Area Committee</a>
-    <a href="#contact">Contact</a>
+    <div class="logo">
+      <i class="fas fa-shield-alt"></i>
+      <span class="logo-text">Black Force 007</span>
+    </div>
+    
+    <div class="nav-links">
+      <a href="#home">হোম</a>
+      <a href="#about">আমাদের সম্পর্কে</a>
+      <a href="#committee">কমিটি</a>
+      <a href="#area">এলাকা কমিটি</a>
+      <a href="#contact">যোগাযোগ</a>
+    </div>
+    
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <div class="mobile-menu" id="mobileMenu">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
   </nav>
 
-  <div class="container">
+  <!-- About Section -->
+  <section id="about" class="section-light">
+    <div class="container">
+      <h2 class="section-title">আমাদের সম্পর্কে</h2>
+      <div class="committee fade-in">
+        <p>Black Force 007 একটি সামাজিক সংগঠন যা সত্য, ন্যায় ও নৈতিকতার পথে সমাজের উন্নয়ন এবং অপরাধের বিরুদ্ধে লড়াই করার জন্য প্রতিষ্ঠিত হয়েছে। আমাদের লক্ষ্য একটি নিরাপদ, সুন্দর ও অপরাধমুক্ত সমাজ গড়ে তোলা।</p>
+        <p>আমরা যুব সমাজকে সঠিক পথে পরিচালিত করতে, তাদের মধ্যে দেশপ্রেম ও নৈতিক মূল্যবোধ জাগ্রত করতে এবং সামাজিক দায়িত্ববোধ সৃষ্টিতে কাজ করছি।</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Home / Committee -->
-    <section id="home">
-      <h2>BF 007 CLUB COMMITTEE</h2>
-      <div class="grid">
-        <div class="card">
-          <p><strong>Managing Directors:</strong> Sk Rejuyan, Sk Sabir Ali, Sk Azim</p>
-          <p><strong>Assistant Managing Director:</strong> Sk Nur Islam</p>
-          <p><strong>Youth Network:</strong> ******</p>
-          <p><strong>Against Crime:</strong> ******</p>
-          <p><strong>News Exchange:</strong> ******</p>
-          <p><strong>Secretary:</strong> Sk Yasir</p>
-          <p><strong>President:</strong> Sk Minhaj</p>
-          <p><strong>Vice President:</strong> Sk Rajab Ali</p>
+  <!-- Main Committee Section -->
+  <section id="committee" class="section-dark">
+    <div class="container">
+      <h2 class="section-title">BF 007 CLUB COMMITTEE</h2>
+      <div class="committee-grid">
+        <div class="committee-card fade-in">
+          <h3>কেন্দ্রীয় কমিটি</h3>
+          <p><i class="fas fa-user-tie"></i> <strong>Managing Directors:</strong> Sk Rejuyan, Sk Sabir Ali, Sk Azim</p>
+          <p><i class="fas fa-user-check"></i> <strong>Assistant Managing Director:</strong> Sk Nur Islam</p>
+          <p><i class="fas fa-network-wired"></i> <strong>Youth Network:</strong> ******</p>
+          <p><i class="fas fa-gavel"></i> <strong>Against Crime:</strong> ******</p>
+          <p><i class="fas fa-newspaper"></i> <strong>News Exchange:</strong> ******</p>
+          <p><i class="fas fa-user-edit"></i> <strong>Secretary:</strong> Sk Yasir</p>
+          <p><i class="fas fa-crown"></i> <strong>President:</strong> Sk Minhaj</p>
+          <p><i class="fas fa-user-friends"></i> <strong>Vice President:</strong> Sk Rajab Ali</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Area Committee -->
-    <section id="area">
-      <h2>Black Force 007™ Area Committee</h2>
+  <!-- Area Committee -->
+  <section id="area" class="section-light">
+    <div class="container">
+      <h2 class="section-title">Black Force 007™ Area Committee</h2>
 
-      <!-- Area 1 -->
-      <h3>Area 1</h3>
-      <div class="grid">
-        <div class="card">
-          <p><strong>Managing Director:</strong> *****</p>
-          <p><strong>Youth Network:</strong> ****</p>
-          <p><strong>Secretary:</strong> Sk Somir | Sk Kader Ali</p>
-          <p><strong>President:</strong> Sk Aktar Ali</p>
-          <p><strong>Vice President:</strong> Sk Babusona</p>
-          <p><strong>General Secretary:</strong> Sk Nur Hossen</p>
-          <p><strong>Assistant Secretary:</strong> Sk Arjil</p>
-          <p><strong>Organizing Secretary:</strong> Sk Saruk</p>
-          <p><strong>Media Secretary:</strong> Sk Johir | Sk Abjul</p>
-          <p><strong>News Exchange:</strong> **** ** *** *****</p>
+      <div class="area-committee fade-in">
+        <h3><i class="fas fa-map-marker-alt"></i> Area 1</h3>
+        <div class="area-grid">
+          <div class="area-card">
+            <p><i class="fas fa-user-tie"></i> <strong>Managing Director:</strong> *****</p>
+            <p><i class="fas fa-network-wired"></i> <strong>Youth Network:</strong> ****</p>
+            <p><i class="fas fa-user-edit"></i> <strong>Secretary:</strong> Sk Somir | Sk Kader Ali</p>
+            <p><i class="fas fa-crown"></i> <strong>President:</strong> Sk Aktar Ali</p>
+            <p><i class="fas fa-user-friends"></i> <strong>Vice President:</strong> Sk Babusona</p>
+            <p><i class="fas fa-tasks"></i> <strong>General Secretary:</strong> Sk Nur Hossen</p>
+            <p><i class="fas fa-user-check"></i> <strong>Assistant Secretary:</strong> Sk Arjil</p>
+            <p><i class="fas fa-sitemap"></i> <strong>Organizing Secretary:</strong> Sk Saruk</p>
+            <p><i class="fas fa-photo-video"></i> <strong>Media Secretary:</strong> Sk Johir | Sk Abjul</p>
+            <p><i class="fas fa-newspaper"></i> <strong>News Exchange:</strong> **** ** *** *****</p>
+          </div>
         </div>
       </div>
 
-      <!-- Area 2 -->
-      <h3>Area 2</h3>
-      <div class="grid">
-        <div class="card">
-          <p><strong>Managing Director:</strong> ******</p>
-          <p><strong>Youth Network:</strong> ****</p>
-          <p><strong>Secretary:</strong> Sk Sabir | Sk Salman</p>
-          <p><strong>President:</strong> Sk Nur Islam</p>
-          <p><strong>Vice President:</strong> Sk Minhaj | Motu</p>
-          <p><strong>Organizing Secretary:</strong> Sk Soidul</p>
-          <p><strong>Media Secretary:</strong> Sk Arman | Sk Arif | Sk Selim | Sk Imran/chand</p>
-          <p><strong>News Exchange:</strong> **** ** *** *****</p>
+      <div class="area-committee fade-in">
+        <h3><i class="fas fa-map-marker-alt"></i> Area 2</h3>
+        <div class="area-grid">
+          <div class="area-card">
+            <p><i class="fas fa-user-tie"></i> <strong>Managing Director:</strong> ******</p>
+            <p><i class="fas fa-network-wired"></i> <strong>Youth Network:</strong> ****</p>
+            <p><i class="fas fa-user-edit"></i> <strong>Secretary:</strong> Sk Sabir | Sk Salman</p>
+            <p><i class="fas fa-crown"></i> <strong>President:</strong> Sk Nur Islam</p>
+            <p><i class="fas fa-user-friends"></i> <strong>Vice President:</strong> Sk Minhaj | Motu</p>
+            <p><i class="fas fa-sitemap"></i> <strong>Organizing Secretary:</strong> Sk Soidul</p>
+            <p><i class="fas fa-photo-video"></i> <strong>Media Secretary:</strong> Sk Arman | Sk Arif | Sk Selim | Sk Imran/chand</p>
+            <p><i class="fas fa-newspaper"></i> <strong>News Exchange:</strong> **** ** *** *****</p>
+          </div>
         </div>
       </div>
 
-      <!-- Area 3 -->
-      <h3>Area 3</h3>
-      <div class="grid">
-        <div class="card">
-          <p><strong>Managing Director:</strong> ******</p>
-          <p><strong>Youth Network:</strong> ****</p>
-          <p><strong>Secretary:</strong> Sk Sukur | Sk Rajab</p>
-          <p><strong>President:</strong> Sk Abid</p>
-          <p><strong>Assistant Secretary:</strong> -</p>
-          <p><strong>General Secretary:</strong> -</p>
-          <p><strong>Assistant General Secretary:</strong> Sk Jakir</p>
-          <p><strong>Organizing Secretary:</strong> Sk Azim | Sk Miraj</p>
-          <p><strong>Media Secretary:</strong> Sk Monirul | Sk Aslam</p>
-          <p><strong>News Exchange:</strong> **** ** *** *****</p>
+      <div class="area-committee fade-in">
+        <h3><i class="fas fa-map-marker-alt"></i> Area 3</h3>
+        <div class="area-grid">
+          <div class="area-card">
+            <p><i class="fas fa-user-tie"></i> <strong>Managing Director:</strong> ******</p>
+            <p><i class="fas fa-network-wired"></i> <strong>Youth Network:</strong> ****</p>
+            <p><i class="fas fa-user-edit"></i> <strong>Secretary:</strong> Sk Sukur | Sk Rajab</p>
+            <p><i class="fas fa-crown"></i> <strong>President:</strong> Sk Abid</p>
+            <p><i class="fas fa-user-check"></i> <strong>Assistant Secretary:</strong> -</p>
+            <p><i class="fas fa-tasks"></i> <strong>General Secretary:</strong> -</p>
+            <p><i class="fas fa-user-check"></i> <strong>Assistant General Secretary:</strong> Sk Jakir</p>
+            <p><i class="fas fa-sitemap"></i> <strong>Organizing Secretary:</strong> Sk Azim | Sk Miraj</p>
+            <p><i class="fas fa-photo-video"></i> <strong>Media Secretary:</strong> Sk Monirul | Sk Aslam</p>
+            <p><i class="fas fa-newspaper"></i> <strong>News Exchange:</strong> **** ** *** *****</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <div class="card contact">
-        <p><strong>WhatsApp Chat:</strong> 9163207300</p>
-        <p><strong>Email:</strong> <a href="mailto:blackforce007.official@gmail.com">blackforce007.official@gmail.com</a></p>
-        <p><strong>Website:</strong> www.blackforce007.com (Coming)</p>
-        <p><strong>Facebook Page:</strong> Open Facebook Page</p>
-        <p><strong>Facebook Group:</strong> Open Facebook Group</p>
-        <p><strong>AI Legal Assistant:</strong> Blackforce007 AI</p>
-        <p><strong>Donation/Support via UPI:</strong> 9163207300-1@okbizaxis</p>
+  <!-- Contact Section -->
+  <section id="contact" class="section-dark">
+    <div class="container">
+      <h2 class="section-title">যোগাযোগ করুন</h2>
+      <div class="contact-info">
+        <div class="contact-item fade-in">
+          <div class="contact-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div>
+            <h4>WhatsApp Chat</h4>
+            <p>9163207300</p>
+          </div>
+        </div>
+        
+        <div class="contact-item fade-in">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h4>ইমেইল</h4>
+            <p><a href="mailto:blackforce007.official@gmail.com">blackforce007.official@gmail.com</a></p>
+          </div>
+        </div>
+        
+        <div class="contact-item fade-in">
+          <div class="contact-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div>
+            <h4>ওয়েবসাইট</h4>
+            <p>www.blackforce007.com (শীঘ্রই আসছে)</p>
+          </div>
+        </div>
+        
+        <div class="contact-item fade-in">
+          <div class="contact-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div>
+            <h4>AI Legal Assistant</h4>
+            <p>Blackforce007 AI</p>
+          </div>
+        </div>
+        
+        <div class="contact-item fade-in">
+          <div class="contact-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+          </div>
+          <div>
+            <h4>ডোনেশন/সাপোর্ট</h4>
+            <p>9163207300-1@okbizaxis</p>
+          </div>
+        </div>
       </div>
-    </section>
-
-  </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Black Force 007. All Rights Reserved.</p>
-    <div class="socials">
-      <a href="#">Facebook</a> |
-      <a href="#">Twitter</a> |
-      <a href="#">Instagram</a> |
-      <a href="#">YouTube</a>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">Black Force 007</div>
+          <p>সত্য ও ন্যায়ের পথে সমাজের উন্নতি ও অপরাধের বিরুদ্ধে লড়াই করা আমাদের লক্ষ্য।</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>দ্রুত লিংক</h4>
+          <ul>
+            <li><a href="#home">হোম</a></li>
+            <li><a href="#about">আমাদের সম্পর্কে</a></li>
+            <li><a href="#committee">কমিটি</a></li>
+            <li><a href="#area">এলাকা কমিটি</a></li>
+            <li><a href="#contact">যোগাযোগ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-social">
+          <h4>সামাজিক যোগাযোগ</h4>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>© 2025 Black Force 007. All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 
+  <!-- Scroll to Top Button -->
+  <div class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      
+      if (document.body.classList.contains('light-mode')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Scroll to Top
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('active');
+      } else {
+        scrollToTopBtn.classList.remove('active');
+      }
+    });
+    
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Smooth Scrolling for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    // Fade In Animation on Scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeInOnScroll = () => {
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', fadeInOnScroll);
+    // Initial check
+    fadeInOnScroll();
+  </script>
 </body>
 </html>
